@@ -42,7 +42,7 @@ export default function App() {
               email: u.email || '',
               displayName: u.displayName || 'User',
               totalIncome: 0,
-              currency: 'USD',
+              currency: 'INR',
               updatedAt: serverTimestamp(),
             };
             setDoc(profileRef, newProfile).catch(err => handleFirestoreError(err, OperationType.WRITE, `users/${u.uid}`));
@@ -428,7 +428,7 @@ export default function App() {
                       <div className="space-y-2">
                          <label className="text-[10px] font-black uppercase text-zinc-600 tracking-widest pl-1">Operating Currency</label>
                          <select 
-                          defaultValue={profile?.currency || 'USD'}
+                          value={profile?.currency || 'INR'}
                           onChange={(e) => {
                             setDoc(doc(db, 'users', user.uid), { currency: e.target.value, updatedAt: serverTimestamp() }, { merge: true })
                               .catch(err => handleFirestoreError(err, OperationType.WRITE, `users/${user.uid}`));
