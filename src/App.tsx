@@ -15,7 +15,7 @@ import {
 import { parseExpenseAI } from './services/ai';
 
 const CATEGORIES = ['Food', 'Transport', 'Utilities', 'Entertainment', 'Health', 'Shopping', 'Other'];
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#6b7280'];
+const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#71717a'];
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -99,34 +99,34 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center p-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-md w-full text-center space-y-8"
         >
-          <div className="bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-xl shadow-blue-200">
-            <Wallet className="w-8 h-8 text-white" />
+          <div className="bg-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-emerald-500/20">
+            <Wallet className="w-8 h-8 text-black" />
           </div>
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 font-sans">SpendWise</h1>
-            <p className="text-slate-500 font-sans">Effortless expense tracking & budgeting with AI.</p>
+            <h1 className="text-4xl font-bold tracking-tight text-white font-sans uppercase">SpendWise</h1>
+            <p className="text-zinc-500 font-sans text-sm tracking-wide">AI-Powered personal ledger for the modern era.</p>
           </div>
           <button 
             id="google-login-btn"
             onClick={loginWithGoogle}
-            className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 group"
+            className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-zinc-50 text-black rounded-xl font-bold uppercase tracking-wide hover:bg-zinc-200 transition-all shadow-lg group"
           >
             <LogIn className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            Sign in with Google
+            Connect Google Account
           </button>
         </motion.div>
       </div>
@@ -152,38 +152,36 @@ export default function App() {
   }).reverse();
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20 md:pb-0 md:pl-64">
+    <div className="min-h-screen bg-zinc-950 font-sans text-zinc-50 pb-20 md:pb-0 md:pl-64">
       {/* Sidebar */}
-      <nav className="fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-200 md:top-0 md:left-0 md:w-64 md:h-full md:border-t-0 md:border-r flex md:flex-col items-center md:items-stretch justify-around md:justify-start px-2 py-4 z-50">
-        <div className="hidden md:flex items-center gap-3 px-4 mb-8">
-          <div className="bg-blue-600 p-1.5 rounded-lg">
-            <Wallet className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-bold text-xl tracking-tight">SpendWise</span>
+      <nav className="fixed bottom-0 left-0 right-0 h-16 bg-zinc-900 border-t border-zinc-800 md:top-0 md:left-0 md:w-64 md:h-full md:border-t-0 md:border-r flex md:flex-col items-center md:items-stretch justify-around md:justify-start px-2 py-6 z-50">
+        <div className="hidden md:flex items-center gap-3 px-4 mb-10">
+          <div className="bg-emerald-500 w-8 h-8 rounded-lg flex items-center justify-center text-black font-black italic">S</div>
+          <span className="font-black text-xl tracking-tighter uppercase italic">SpendWise</span>
         </div>
 
-        <div id="nav-items" className="flex md:flex-col w-full gap-1">
-          <NavItem id="nav-dashboard" icon={PieChart} label="Dashboard" active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')} />
-          <NavItem id="nav-history" icon={History} label="History" active={activeTab === 'history'} onClick={() => setActiveTab('history')} />
-          <NavItem id="nav-budgets" icon={Settings} label="Budget" active={activeTab === 'budgets'} onClick={() => setActiveTab('budgets')} />
+        <div id="nav-items" className="flex md:flex-col w-full gap-2 px-2">
+          <NavItem id="nav-dashboard" icon={PieChart} label="Analytics" active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')} />
+          <NavItem id="nav-history" icon={History} label="Transactions" active={activeTab === 'history'} onClick={() => setActiveTab('history')} />
+          <NavItem id="nav-budgets" icon={Settings} label="Planner" active={activeTab === 'budgets'} onClick={() => setActiveTab('budgets')} />
         </div>
 
         <div className="mt-auto hidden md:block px-4">
-          <div className="p-4 bg-slate-100 rounded-xl space-y-3">
+          <div className="p-4 bg-zinc-900/50 border border-zinc-800 rounded-3xl space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-emerald-400 font-bold text-xs border border-zinc-700">
                 {user.displayName?.[0]}
               </div>
               <div className="truncate">
-                <p className="text-sm font-medium truncate">{user.displayName}</p>
-                <p className="text-xs text-slate-500 truncate">{user.email}</p>
+                <p className="text-sm font-semibold truncate">{user.displayName}</p>
+                <p className="text-[10px] text-zinc-500 truncate uppercase font-bold tracking-widest">{profile?.currency || 'USD'}</p>
               </div>
             </div>
             <button 
               onClick={logout}
-              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-bold text-zinc-500 hover:text-white transition-colors uppercase tracking-widest"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3 h-3" />
               Sign Out
             </button>
           </div>
@@ -191,134 +189,165 @@ export default function App() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto p-4 md:p-8 space-y-8">
+      <main className="max-w-6xl mx-auto p-4 md:p-10 space-y-10">
         {/* Header / AI Input */}
-        <div className="space-y-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <h2 className="text-3xl font-bold tracking-tight">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h2 className="text-zinc-400 text-xs font-bold uppercase tracking-[0.2em] mb-1">
               {activeTab === 'dashboard' && "Overview"}
-              {activeTab === 'history' && "Transaction History"}
-              {activeTab === 'budgets' && "Budget Planner"}
+              {activeTab === 'history' && "Ledger"}
+              {activeTab === 'budgets' && "Allocations"}
             </h2>
-            <form id="ai-expense-form" onSubmit={handleAiAddExpense} className="relative group w-full md:w-96">
-              <input 
-                id="ai-expense-input"
-                value={aiInput}
-                onChange={(e) => setAiInput(e.target.value)}
-                placeholder="Spent $20 on coffee today..."
-                className="w-full bg-white border border-slate-200 rounded-2xl py-3 pl-4 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm"
-              />
-              <button 
-                id="ai-submit-btn"
-                disabled={aiLoading || !aiInput}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:bg-slate-400 transition-colors shadow-sm"
-              >
-                {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-              </button>
-            </form>
+            <h1 className="text-4xl font-bold tracking-tight">
+              {activeTab === 'dashboard' && "Portfolio Trends"}
+              {activeTab === 'history' && "Activity Log"}
+              {activeTab === 'budgets' && "Budget Targets"}
+            </h1>
           </div>
+          <form id="ai-expense-form" onSubmit={handleAiAddExpense} className="relative group w-full md:w-96">
+            <input 
+              id="ai-expense-input"
+              value={aiInput}
+              onChange={(e) => setAiInput(e.target.value)}
+              placeholder="Captured: $45 for dinner last night"
+              className="w-full bg-zinc-900/50 border border-zinc-800 rounded-full py-4 pl-6 pr-14 text-sm focus:outline-none focus:border-zinc-600 transition-all placeholder:text-zinc-600"
+            />
+            <button 
+              id="ai-submit-btn"
+              disabled={aiLoading || !aiInput}
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-emerald-500 text-black text-xs font-bold rounded-full hover:bg-emerald-400 disabled:opacity-50 disabled:bg-zinc-800 transition-colors uppercase tracking-widest"
+            >
+              {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Sync"}
+            </button>
+          </form>
+        </div>
 
           <AnimatePresence mode="wait">
             {activeTab === 'dashboard' && (
               <motion.div 
                 key="dashboard"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                className="grid grid-cols-1 md:grid-cols-12 gap-5"
               >
-                {/* Stats Cards */}
-                <Card className="md:col-span-1 bg-blue-600 text-white shadow-xl shadow-blue-200 border-none">
-                  <p className="text-blue-100 text-sm font-medium mb-1">Monthly Budget</p>
-                  <h3 className="text-3xl font-bold">{formatCurrency(profile?.totalIncome || 0, profile?.currency)}</h3>
-                  <div className="mt-4 pt-4 border-t border-blue-500/30 flex items-center justify-between">
-                    <span className="text-sm text-blue-100">Remaining</span>
-                    <span className={cn("font-bold", remainingBudget < 0 ? "text-red-200" : "text-white")}>
-                      {formatCurrency(remainingBudget, profile?.currency)}
-                    </span>
+                {/* Stats Cards - Bento Grid Layout */}
+                <Card className="md:col-span-4 bg-zinc-900/50 flex flex-col justify-between min-h-[180px]">
+                  <div>
+                    <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Current Capital</p>
+                    <h3 className="text-4xl font-semibold tracking-tight">{formatCurrency(profile?.totalIncome || 0, profile?.currency)}</h3>
+                  </div>
+                  <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">
+                    <TrendingUp className="w-3 h-3" />
+                    <span>Verified Account Status</span>
                   </div>
                 </Card>
 
-                <Card className="md:col-span-2">
-                  <div className="flex items-center justify-between mb-6">
-                    <h4 className="font-bold text-slate-700">Spending Trends</h4>
-                    <TrendingUp className="w-4 h-4 text-emerald-500" />
+                <Card className="md:col-span-8 bg-zinc-900/50 p-8">
+                  <div className="flex justify-between items-start mb-10">
+                    <div>
+                      <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-1">Weekly Analytics</h4>
+                      <p className="text-lg font-medium">Spending Velocity</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <div className="w-2 h-2 rounded-full bg-zinc-700"></div>
+                    </div>
                   </div>
                   <div className="h-48 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={dailyData}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} dy={10} />
-                        <YAxis hide />
+                        <XAxis dataKey="name" hide />
                         <Tooltip 
-                          cursor={{ fill: '#f8fafc' }}
-                          contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
+                          cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                          contentStyle={{ backgroundColor: '#18181b', borderRadius: '12px', border: '1px solid #27272a', color: '#fafafa' }}
+                          itemStyle={{ color: '#10b981' }}
                         />
-                        <Bar dataKey="amount" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={24} />
+                        <Bar dataKey="amount" fill="#10b981" radius={[4, 4, 0, 0]} barSize={40} />
                       </BarChart>
                     </ResponsiveContainer>
+                  </div>
+                  <div className="flex justify-between mt-4 text-[10px] text-zinc-600 font-bold uppercase tracking-widest px-2">
+                    {dailyData.map(d => <span key={d.name}>{d.name.split(' ')[0]}</span>)}
                   </div>
                 </Card>
 
                 {/* Categories & Recent */}
-                <Card className="md:col-span-1">
-                  <h4 className="font-bold text-slate-700 mb-6">Categories</h4>
+                <Card className="md:col-span-4 bg-zinc-900/50">
+                  <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-8">Category Weights</h4>
                   {categoryData.length > 0 ? (
-                    <div className="h-48">
+                    <div className="h-48 relative">
                       <ResponsiveContainer width="100%" height="100%">
                         <RePieChart>
                           <Pie
                             data={categoryData}
                             cx="50%"
                             cy="50%"
-                            innerRadius={60}
-                            outerRadius={80}
-                            paddingAngle={5}
+                            innerRadius={65}
+                            outerRadius={85}
+                            paddingAngle={8}
                             dataKey="value"
+                            stroke="none"
                           >
                             {categoryData.map((entry, index) => (
                               <Cell key={`cell-${index}`} fill={COLORS[CATEGORIES.indexOf(entry.name) % COLORS.length]} />
                             ))}
                           </Pie>
                           <Tooltip 
-                            contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
+                            contentStyle={{ backgroundColor: '#18181b', borderRadius: '12px', border: '1px solid #27272a', color: '#fafafa' }}
                           />
                         </RePieChart>
                       </ResponsiveContainer>
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="text-center">
+                          <p className="text-[10px] font-bold text-zinc-500 uppercase">Total</p>
+                          <p className="text-lg font-bold">{categoryData.length}</p>
+                        </div>
+                      </div>
                     </div>
                   ) : (
-                    <div className="h-48 flex flex-col items-center justify-center text-slate-400 text-sm italic">
-                      No data to show
+                    <div className="h-48 flex flex-col items-center justify-center text-zinc-600 text-xs uppercase font-bold tracking-widest italic">
+                      Static data null
                     </div>
                   )}
                 </Card>
 
-                <Card className="md:col-span-2">
-                  <div className="flex items-center justify-between mb-6">
-                    <h4 className="font-bold text-slate-700">Recent Transactions</h4>
-                    <button onClick={() => setActiveTab('history')} className="text-sm text-blue-600 font-medium hover:underline">View All</button>
+                <Card className="md:col-span-4 bg-zinc-900/50">
+                  <div className="flex items-center justify-between mb-8">
+                    <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em]">Latest Entries</h4>
+                    <button onClick={() => setActiveTab('history')} className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest hover:underline">Full Log</button>
                   </div>
-                  <div className="space-y-4">
-                    {expenses.slice(0, 5).map(expense => (
-                      <div key={expense.id} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition-colors">
-                        <div className="flex items-center gap-4">
-                          <div className={cn(
-                            "w-10 h-10 rounded-lg flex items-center justify-center",
-                            `bg-${COLORS[CATEGORIES.indexOf(expense.category) % COLORS.length]}10`
-                          )} style={{ backgroundColor: `${COLORS[CATEGORIES.indexOf(expense.category) % COLORS.length]}15` }}>
-                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[CATEGORIES.indexOf(expense.category) % COLORS.length] }} />
-                          </div>
-                          <div>
-                            <p className="font-medium text-sm text-slate-800">{expense.description}</p>
-                            <p className="text-xs text-slate-500">{expense.category} • {format(new Date(expense.date.toDate ? expense.date.toDate() : expense.date), 'MMM dd')}</p>
-                          </div>
+                  <div className="space-y-6">
+                    {expenses.slice(0, 4).map(expense => (
+                      <div key={expense.id} className="flex justify-between items-center group">
+                        <div>
+                          <p className="text-sm font-semibold group-hover:text-emerald-400 transition-colors uppercase tracking-tight">{expense.description}</p>
+                          <p className="text-[10px] text-zinc-500 uppercase font-black tracking-widest">{format(new Date(expense.date.toDate ? expense.date.toDate() : expense.date), 'MMM dd, HH:mm')}</p>
                         </div>
-                        <span className="font-bold text-slate-700">-{formatCurrency(expense.amount, profile?.currency)}</span>
+                        <span className="text-sm font-black text-zinc-300">-{formatCurrency(expense.amount, profile?.currency)}</span>
                       </div>
                     ))}
                     {expenses.length === 0 && (
-                      <p className="text-center text-slate-400 py-8 italic">No transactions found.</p>
+                      <p className="text-center text-zinc-600 py-8 text-[10px] font-bold uppercase tracking-widest italic">Empty database</p>
                     )}
+                  </div>
+                </Card>
+
+                <Card className={cn(
+                  "md:col-span-4 rounded-[40px] flex flex-col justify-between p-8 border-none",
+                  remainingBudget < 0 ? "bg-red-500 text-white" : "bg-emerald-500 text-black"
+                )}>
+                  <div>
+                    <p className={cn("text-[10px] font-bold uppercase tracking-widest mb-1", remainingBudget < 0 ? "text-white/60" : "text-black/60")}>Operational Runway</p>
+                    <h4 className={cn("text-3xl font-black italic uppercase leading-none", remainingBudget < 0 ? "text-white" : "text-black")}>
+                      {remainingBudget < 0 ? "Exceeded Limit" : "Safe Zone Access"}
+                    </h4>
+                  </div>
+                  <div className="flex items-end justify-between">
+                    <div className="text-4xl font-black tracking-tighter">
+                      {Math.max(0, Math.round((remainingBudget / (profile?.totalIncome || 1)) * 100))}%
+                    </div>
+                    <AlertCircle className={cn("w-6 h-6", remainingBudget < 0 ? "text-white" : "text-black/40")} />
                   </div>
                 </Card>
               </motion.div>
@@ -332,24 +361,24 @@ export default function App() {
                 exit={{ opacity: 0, y: -20 }}
                 className="space-y-6"
               >
-                <Card>
-                  <div className="divide-y divide-slate-100">
+                <Card className="bg-zinc-900/50">
+                  <div className="divide-y divide-zinc-800">
                     {expenses.map(expense => (
-                      <div key={expense.id} className="flex items-center justify-between py-4 first:pt-0 last:pb-0">
-                        <div className="flex items-center gap-4">
-                           <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg" style={{ backgroundColor: `${COLORS[CATEGORIES.indexOf(expense.category) % COLORS.length]}15`, color: COLORS[CATEGORIES.indexOf(expense.category) % COLORS.length] }}>
+                      <div key={expense.id} className="flex items-center justify-between py-5 first:pt-0 last:pb-0">
+                        <div className="flex items-center gap-6">
+                           <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg italic bg-zinc-800 border border-zinc-700" style={{ color: COLORS[CATEGORIES.indexOf(expense.category) % COLORS.length] }}>
                              {expense.category[0]}
                            </div>
                            <div>
-                             <p className="font-bold text-slate-800">{expense.description}</p>
-                             <p className="text-xs text-slate-500 font-medium">{expense.category.toUpperCase()} • {format(new Date(expense.date?.toDate ? expense.date.toDate() : expense.date), 'PPPP')}</p>
+                             <p className="font-black text-lg text-zinc-100 uppercase italic tracking-tighter leading-tight">{expense.description}</p>
+                             <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">{expense.category} • {format(new Date(expense.date?.toDate ? expense.date.toDate() : expense.date), 'PPPP')}</p>
                            </div>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-red-600">-{formatCurrency(expense.amount, profile?.currency)}</p>
+                          <p className="text-xl font-black text-zinc-200">-{formatCurrency(expense.amount, profile?.currency)}</p>
                           <button 
                             onClick={async () => {
-                              if (confirm('Delete this transaction?')) {
+                              if (confirm('Permanently redact this entry?')) {
                                 try {
                                   await deleteDoc(doc(db, 'expenses', expense.id));
                                 } catch (err) {
@@ -357,9 +386,9 @@ export default function App() {
                                 }
                               }
                             }}
-                            className="text-xs text-slate-400 hover:text-red-500 transition-colors font-medium"
+                            className="text-[10px] text-zinc-600 hover:text-red-500 transition-colors uppercase font-black tracking-[0.2em]"
                           >
-                            Remove
+                            Redact
                           </button>
                         </div>
                       </div>
@@ -377,58 +406,66 @@ export default function App() {
                 exit={{ opacity: 0, y: -20 }}
                 className="space-y-6"
               >
-                <Card className="space-y-6">
+                <Card className="bg-zinc-900/50 space-y-10 p-10">
                   <div>
-                    <h4 className="font-bold text-slate-700 mb-2 font-sans">Monthly Income & Settings</h4>
-                    <p className="text-sm text-slate-500 mb-4 font-sans">Set your expected monthly income to track remaining funds.</p>
-                    <div className="flex gap-4">
-                      <input 
-                        type="number"
-                        defaultValue={profile?.totalIncome}
-                        onBlur={(e) => {
-                          const val = parseFloat(e.target.value);
-                          if (isNaN(val)) return;
-                          setDoc(doc(db, 'users', user.uid), { totalIncome: val, updatedAt: serverTimestamp() }, { merge: true })
-                            .catch(err => handleFirestoreError(err, OperationType.WRITE, `users/${user.uid}`));
-                        }}
-                        className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                        placeholder="0.00"
-                      />
-                      <select 
-                        defaultValue={profile?.currency || 'USD'}
-                        onChange={(e) => {
-                          setDoc(doc(db, 'users', user.uid), { currency: e.target.value, updatedAt: serverTimestamp() }, { merge: true })
-                            .catch(err => handleFirestoreError(err, OperationType.WRITE, `users/${user.uid}`));
-                        }}
-                        className="bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                      >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="INR">INR</option>
-                        <option value="JPY">JPY</option>
-                      </select>
+                    <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em] mb-6">Financial Calibration</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                         <label className="text-[10px] font-black uppercase text-zinc-600 tracking-widest pl-1">Baseline Income</label>
+                         <input 
+                          type="number"
+                          defaultValue={profile?.totalIncome}
+                          onBlur={(e) => {
+                            const val = parseFloat(e.target.value);
+                            if (isNaN(val)) return;
+                            setDoc(doc(db, 'users', user.uid), { totalIncome: val, updatedAt: serverTimestamp() }, { merge: true })
+                              .catch(err => handleFirestoreError(err, OperationType.WRITE, `users/${user.uid}`));
+                          }}
+                          className="w-full bg-zinc-800/50 border border-zinc-700 rounded-2xl px-6 py-4 text-xl font-bold focus:border-emerald-500 outline-none transition-all"
+                          placeholder="0.00"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                         <label className="text-[10px] font-black uppercase text-zinc-600 tracking-widest pl-1">Operating Currency</label>
+                         <select 
+                          defaultValue={profile?.currency || 'USD'}
+                          onChange={(e) => {
+                            setDoc(doc(db, 'users', user.uid), { currency: e.target.value, updatedAt: serverTimestamp() }, { merge: true })
+                              .catch(err => handleFirestoreError(err, OperationType.WRITE, `users/${user.uid}`));
+                          }}
+                          className="w-full bg-zinc-800/50 border border-zinc-700 rounded-2xl px-6 py-4 text-xl font-bold focus:border-emerald-500 outline-none transition-all appearance-none cursor-pointer text-zinc-300"
+                        >
+                          <option value="USD">USD ($)</option>
+                          <option value="EUR">EUR (€)</option>
+                          <option value="GBP">GBP (£)</option>
+                          <option value="INR">INR (₹)</option>
+                          <option value="JPY">JPY (¥)</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-slate-100">
-                    <div className="flex items-center justify-between mb-6">
-                      <h4 className="font-bold text-slate-700">Category Budgets</h4>
-                      <Plus className="w-4 h-4 text-blue-600 cursor-pointer" />
+                  <div className="pt-10 border-t border-zinc-800">
+                    <div className="flex items-center justify-between mb-10">
+                      <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em]">Quota Management</h4>
+                      <Plus className="w-4 h-4 text-emerald-500" />
                     </div>
                     
-                    <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                       {CATEGORIES.map(cat => {
                         const budget = budgets.find(b => b.category === cat);
                         const spent = expenses.filter(e => e.category === cat).reduce((acc, curr) => acc + curr.amount, 0);
                         const percent = budget ? (spent / budget.limit) * 100 : 0;
                         
                         return (
-                          <div key={cat} className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                              <span className="font-medium text-slate-700">{cat}</span>
-                              <div className="flex items-center gap-2">
-                                <span className="text-slate-500">{formatCurrency(spent, profile?.currency)} /</span>
+                          <div key={cat} className="space-y-4">
+                            <div className="flex items-end justify-between">
+                              <div>
+                                 <p className="text-[10px] font-black uppercase text-zinc-600 tracking-widest mb-1">{cat}</p>
+                                 <p className="text-sm font-bold text-zinc-300">{formatCurrency(spent, profile?.currency)} Used</p>
+                              </div>
+                              <div className="text-right">
+                                <p className="text-[10px] font-black uppercase text-zinc-600 tracking-widest mb-1">Quota limit</p>
                                 <input 
                                   type="number"
                                   defaultValue={budget?.limit || 0}
@@ -444,17 +481,17 @@ export default function App() {
                                       period: 'monthly'
                                     }, { merge: true }).catch(err => handleFirestoreError(err, OperationType.WRITE, 'budgets'));
                                   }}
-                                  className="w-20 bg-transparent border-b border-slate-200 text-right font-bold focus:border-blue-500 outline-none"
+                                  className="w-24 bg-transparent border-b border-zinc-700 text-right font-black italic focus:border-emerald-500 outline-none text-lg"
                                 />
                               </div>
                             </div>
-                            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                               <motion.div 
                                 initial={{ width: 0 }}
                                 animate={{ width: `${Math.min(percent, 100)}%` }}
                                 className={cn(
                                   "h-full transition-all",
-                                  percent > 90 ? "bg-red-500" : percent > 70 ? "bg-amber-500" : "bg-blue-500"
+                                  percent > 90 ? "bg-red-500" : percent > 70 ? "bg-amber-500" : "bg-emerald-500"
                                 )}
                               />
                             </div>
@@ -467,14 +504,13 @@ export default function App() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
       </main>
 
       {/* Floating Action (Mobile Only) */}
       <div className="md:hidden fixed bottom-20 right-4 z-50">
         <button 
           onClick={() => setAiInput('Spent $')}
-          className="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-blue-400 active:scale-95 transition-transform"
+          className="w-14 h-14 bg-emerald-500 text-black rounded-3xl flex items-center justify-center shadow-2xl active:scale-95 transition-transform"
         >
           <Plus className="w-6 h-6" />
         </button>
@@ -489,24 +525,21 @@ function NavItem({ id, icon: Icon, label, active, onClick }: { id?: string, icon
       id={id}
       onClick={onClick}
       className={cn(
-        "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all group",
+        "flex items-center gap-3 px-5 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all group",
         active 
-          ? "bg-blue-600 text-white shadow-lg shadow-blue-100" 
-          : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+          ? "bg-zinc-800 text-emerald-400 border border-zinc-700 shadow-xl" 
+          : "text-zinc-600 hover:text-zinc-300 hover:bg-zinc-900/50"
       )}
     >
-      <Icon className={cn("w-5 h-5", active ? "text-white" : "text-slate-400 group-hover:text-slate-600")} />
+      <Icon className={cn("w-4 h-4", active ? "text-emerald-400" : "text-zinc-700 group-hover:text-zinc-500")} />
       <span className="hidden md:block">{label}</span>
-      {active && (
-        <motion.div layoutId="activeNav" className="ml-auto hidden md:block w-1 h-4 bg-white/40 rounded-full" />
-      )}
     </button>
   );
 }
 
 function Card({ children, className }: { children: React.ReactNode, className?: string }) {
   return (
-    <div className={cn("bg-white border border-slate-200 rounded-3xl p-6 shadow-sm", className)}>
+    <div className={cn("bg-zinc-900 border border-zinc-800/50 rounded-[32px] p-8 shadow-sm backdrop-blur-sm", className)}>
       {children}
     </div>
   );
